@@ -1,24 +1,37 @@
 name: Release
+
 on:
   push:
-    branches:
-      - main
+    tags:
+      - 'v*'
+
 jobs:
   release:
-    name: Release
+    name: Create Release
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 'lts/*'
-      - name: Install dependencies
-        run: npm install -g semantic-release semantic-release/exec semantic-release/git semantic-release/changelog
-      - name: Release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: npx semantic-release
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        
+    - name: Get version from manifest
+      id: version
+      run: |
+        cd custom_components/eirc
+        VERSION=$(python -c "import json; print(json.load(open('manifest.json'))['version'])")
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+        
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ steps.version.outputs.version }}
+        generate_release_notes: true
+        draft: false
+        prerelease: false
