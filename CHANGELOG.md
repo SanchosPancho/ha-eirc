@@ -1,3 +1,23 @@
+# [1.0.0](https://github.com/SanchosPancho/ha-eirc/compare/v0.11.3...v1.0.0) (2025-10-28)
+
+
+### Bug Fixes
+
+* **sensor:** добавлен translation_key ([416f1df](https://github.com/SanchosPancho/ha-eirc/commit/416f1df69e5d0104ea2129a5e0045e987b6ea1e1))
+
+
+### Features
+
+* add proxy support ([d495816](https://github.com/SanchosPancho/ha-eirc/commit/d49581639ded9081ba4b36a4f9628c83c6691154))
+* add proxy support ([5126f14](https://github.com/SanchosPancho/ha-eirc/commit/5126f140ab495795dca4987c99af36f8e2f60c76))
+* **API:** - централизация логики запросов и удаление дублирования кода ([21aca4f](https://github.com/SanchosPancho/ha-eirc/commit/21aca4f6032269f3b7247e2032b532bae9216e1b))
+* единый скоординированный опрос для всех entity, управляемых интеграцией ([a40be32](https://github.com/SanchosPancho/ha-eirc/commit/a40be3288d2e053850ac8de35f739ee34c5fc9ed))
+
+
+### BREAKING CHANGES
+
+* **API:** конструктор EIRCApiClient был изменен и больше не принимает токены и cookie
+
 ## [1.0.1](https://github.com/StanislavBolshakov/ha-eirc/compare/v1.0.0...v1.0.1) (2025-10-27)
 
 ### Bug Fixes
